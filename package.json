@@ -4,7 +4,7 @@
   "private": true,
   "description": "Site statique du Tennis Club Avenches",
   "scripts": {
-    "start": "sirv site --host 0.0.0.0 --port ${PORT:-3000} --quiet"
+    "start": "sirv docs --host 0.0.0.0 --port ${PORT:-3000} --quiet"
   },
   "engines": {
     "node": ">=18"
