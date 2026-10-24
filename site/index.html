@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tennis Club Avenches</title>
+<meta name="description" content="Tennis Club Avenches — club formateur fondé en 1975. Cotisations, cours de tennis et contact.">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+:root {
+  --site-primary: #174b3b;
+  --site-on-primary: #ffffff;
+  --site-secondary: #d6f06a;
+  --site-on-secondary: #172b20;
+  --site-background: #f6f7f0;
+  --site-on-background: #1b2923;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--site-on-background); }
+#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: light-dark(var(--site-background), #121b17); color: light-dark(var(--site-on-background), #edf3ed); overflow: hidden; }
+a { color: inherit; }
+.wrap { width: min(1160px, calc(100% - 44px)); margin: 0 auto; }
+.topline { background: var(--site-primary); color: var(--site-on-primary); font-size: 12px; letter-spacing: .04em; }
+.topline .wrap { min-height: 36px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.topline a { text-decoration: none; opacity:.9; }
+header { position:relative; z-index:5; background: light-dark(#fff, #18231e); border-bottom:1px solid light-dark(#e4e9e2,#29372f); }
+.nav { display:flex; align-items:center; justify-content:space-between; min-height:78px; gap:24px; }
+.brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.brand-logo { display:inline-flex; align-items:center; }
+.brand-logo picture { display:inline-flex; }
+.brand-logo img { display:block; height:54px; width:auto; }
+.footer-brand .brand-logo img { height:44px; }
+.navlinks { display:flex; align-items:center; gap:26px; font-size:14px; font-weight:650; }
+.navlinks a { text-decoration:none; }
+.navlinks a:hover, .textlink:hover { text-decoration:underline; text-underline-offset:4px; }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:999px; padding:13px 19px; text-decoration:none; border:1px solid transparent; font-size:14px; font-weight:750; transition:transform .18s ease, opacity .18s ease; cursor:pointer; }
+.btn:hover { transform:translateY(-2px); }
+.btn-primary { background:var(--site-primary); color:var(--site-on-primary); }
+.btn-lime { background:var(--site-secondary); color:var(--site-on-secondary); }
+.btn-outline { border-color:currentColor; background:transparent; }
+.menu-toggle { display:none; border:1px solid #a9b5a9; border-radius:999px; padding:10px 14px; background:transparent; color:inherit; font:inherit; }
+.hero { background:var(--site-primary); color:#fff; position:relative; isolation:isolate; overflow:hidden; }
+.hero::after { content:""; position:absolute; z-index:-1; width:580px; height:580px; border:1px solid rgba(255,255,255,.17); border-radius:50%; right:-160px; top:-200px; box-shadow:0 0 0 45px rgba(255,255,255,.035),0 0 0 90px rgba(255,255,255,.025); opacity:var(--site-decoration-opacity); }
+.hero-grid { display:grid; grid-template-columns:1.03fr .97fr; align-items:center; gap:50px; padding:76px 0 82px; }
+.eyebrow { display:inline-flex; align-items:center; gap:9px; text-transform:uppercase; font-size:11px; letter-spacing:.17em; font-weight:800; color:var(--site-secondary); }
+.eyebrow::before { content:""; width:24px; height:2px; background:currentColor; }
+h1,h2,h3,p { margin-top:0; }
+h1 { font-family:var(--site-font-heading); font-size:clamp(42px,5.6vw,72px); line-height:.99; letter-spacing:-.065em; margin:20px 0 24px; max-width:620px; }
+h1 em { color:var(--site-secondary); font-style:normal; }
+.hero-copy { color:rgba(255,255,255,.78); font-size:17px; line-height:1.75; max-width:490px; margin-bottom:29px; }
+.hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
+.hero .btn-outline { color:#fff; border-color:rgba(255,255,255,.4); }
+.court-art { position:relative; min-height:370px; display:grid; place-items:center; }
+.court { position:relative; width:min(100%,390px); aspect-ratio:.84; background:#4d9a69; border:7px solid #e8f1d9; transform:rotate(5deg); box-shadow:22px 22px 0 rgba(8,25,16,.18); }
+.court::before { content:""; position:absolute; inset:0 15%; border-left:2px solid rgba(255,255,255,.85); border-right:2px solid rgba(255,255,255,.85); }
+.court::after { content:""; position:absolute; left:0; right:0; top:50%; border-top:2px solid rgba(255,255,255,.85); }
+.court-mid { position:absolute; top:25%; bottom:25%; left:15%; right:15%; border-top:2px solid rgba(255,255,255,.85); border-bottom:2px solid rgba(255,255,255,.85); }
+.net { position:absolute; top:50%; left:-4%; width:108%; border-top:4px dashed rgba(255,255,255,.7); }
+.ball { position:absolute; width:65px; height:65px; background:var(--site-secondary); border-radius:50%; right:-8px; top:17px; box-shadow:0 8px 20px #0c2d1f44; }
+.ball::before,.ball::after { content:""; position:absolute; border:2px solid #fff; opacity:.8; width:70%; height:120%; border-radius:50%; top:-10%; }
+.ball::before { left:-8%; transform:rotate(28deg); }.ball::after { right:-8%; transform:rotate(28deg); }
+.art-note { position:absolute; bottom:0; left:0; background:var(--site-secondary); color:var(--site-on-secondary); border-radius:14px; padding:15px 19px; transform:rotate(-3deg); box-shadow:0 12px 25px #0c2d1f22; }
+.art-note strong { display:block; font-size:20px; letter-spacing:-.04em; }.art-note span { font-size:11px; text-transform:uppercase; letter-spacing:.1em; }
+.quickbar { background:light-dark(#fff,#18231e); border-bottom:1px solid light-dark(#e3e8df,#29372f); }
+.quickgrid { display:grid; grid-template-columns:repeat(3,1fr); }
+.quick { display:flex; gap:14px; align-items:center; padding:23px 25px; border-right:1px solid light-dark(#e6e9e2,#2c3932); text-decoration:none; }
+.quick:first-child { padding-left:0; }.quick:last-child { border:0; }
+.quick-icon { display:grid; place-items:center; flex:0 0 43px; width:43px; height:43px; border-radius:14px; background:light-dark(#edf3e6,#27372e); font-size:21px; }
+.quick strong { display:block; font-size:14px; margin-bottom:4px; }.quick small { opacity:.65; font-size:12px; }
+section { padding:78px 0; }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:32px; }
+.section-head h2 { font-size:clamp(30px,4vw,44px); line-height:1.05; letter-spacing:-.055em; margin:12px 0 0; }
+.section-head p { max-width:400px; margin:0; line-height:1.7; opacity:.72; font-size:14px; }
+.cards { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.card { padding:26px; background:light-dark(#fff,#1b2821); border:1px solid light-dark(#e6eae2,#2c3932); border-radius:calc(22px * var(--site-radius-scale)); }
+.card-num { color:var(--site-primary); background:light-dark(#eaf2e2,#2b4033); width:44px; height:44px; border-radius:14px; display:grid; place-items:center; font-size:19px; margin-bottom:26px; }
+.card h3 { font-size:20px; letter-spacing:-.03em; margin-bottom:10px; }.card p { font-size:14px; line-height:1.7; opacity:.7; margin-bottom:19px; }
+.textlink { font-size:13px; font-weight:800; text-decoration:none; color:light-dark(#174b3b,#bce28c); }
+.club-band { background:light-dark(#e9efdf,#1a2a21); }
+.band-grid { display:grid; grid-template-columns:1fr 1fr; gap:55px; align-items:center; }
+.band-grid h2 { font-size:clamp(32px,4vw,48px); letter-spacing:-.06em; line-height:1.05; margin:15px 0 20px; }
+.band-grid p { line-height:1.8; opacity:.75; max-width:500px; }
+.checklist { display:grid; gap:16px; margin:24px 0 0; padding:0; list-style:none; }
+.checklist li { display:flex; align-items:center; gap:12px; font-size:14px; font-weight:650; }
+.check { display:grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--site-secondary); color:var(--site-on-secondary); flex-shrink:0; }
+.info-panel { background:var(--site-primary); color:white; border-radius:calc(24px * var(--site-radius-scale)); padding:30px; }
+.info-panel h3 { font-size:24px; letter-spacing:-.04em; margin-bottom:22px; }
+.info-row { display:flex; justify-content:space-between; gap:16px; padding:15px 0; border-bottom:1px solid #ffffff30; font-size:14px; }
+.info-row:last-of-type { border-bottom:0; }.info-row span { color:#ffffffb8; }.info-row strong { text-align:right; }
+.notice { font-size:12px; line-height:1.6; color:#ffffffa8; margin:18px 0 0; }
+.price-table { width:100%; border-collapse:collapse; background:light-dark(#fff,#1b2821); border:1px solid light-dark(#e6eae2,#2c3932); border-radius:calc(18px * var(--site-radius-scale)); overflow:hidden; font-size:14px; }
+.price-table th,.price-table td { padding:15px 20px; text-align:left; border-bottom:1px solid light-dark(#e6eae2,#2c3932); }
+.price-table th { background:light-dark(#eef3e4,#22352a); font-size:12px; text-transform:uppercase; letter-spacing:.08em; font-weight:800; }
+.price-table tr:last-child td { border-bottom:0; }
+.price-table td:last-child { font-weight:800; white-space:nowrap; color:light-dark(#174b3b,#bce28c); }
+.links-section { padding-top:72px; }
+.resource-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.resource { display:flex; flex-direction:column; min-height:160px; padding:22px; border-radius:calc(18px * var(--site-radius-scale)); border:1px solid light-dark(#dfe5da,#2d3a32); background:light-dark(#fff,#1b2821); text-decoration:none; transition:transform .18s ease; }
+.resource:hover { transform:translateY(-3px); }.resource .arrow { align-self:flex-end; font-size:20px; color:light-dark(#174b3b,#bce28c); }.resource strong { font-size:16px; margin-top:auto; margin-bottom:8px; }.resource small { font-size:12px; opacity:.68; line-height:1.5; }
+.contact { background:light-dark(#fff,#18231e); }
+.contact-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; }
+.contact h2 { font-size:clamp(34px,4vw,48px); letter-spacing:-.06em; line-height:1.05; margin:15px 0 18px; }
+.contact-intro { opacity:.72; line-height:1.8; max-width:400px; }
+.contact-list { display:grid; gap:18px; margin-top:28px; }
+.contact-item { display:flex; align-items:flex-start; gap:13px; }.contact-item .quick-icon { flex-shrink:0; }.contact-item strong { display:block; margin:2px 0 5px; font-size:14px; }.contact-item p,.contact-item a { font-size:13px; line-height:1.6; margin:0; opacity:.72; }
+.contact-box { padding:30px; background:light-dark(#f5f7ef,#202e26); border-radius:calc(22px * var(--site-radius-scale)); }
+.contact-box h3 { font-size:23px; letter-spacing:-.04em; }.contact-box p { opacity:.7; line-height:1.7; font-size:14px; }.contact-box .btn { margin-top:12px; }
+.form-grid { display:grid; gap:14px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.field label { display:block; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; margin-bottom:7px; }
+.field input,.field textarea { width:100%; font:inherit; font-size:14px; padding:12px 14px; border-radius:12px; border:1px solid light-dark(#d4dcc9,#3a4a3f); background:light-dark(#fff,#18231e); color:inherit; }
+.field textarea { min-height:130px; resize:vertical; }
+.field input:focus,.field textarea:focus { outline:2px solid var(--site-primary); outline-offset:1px; border-color:transparent; }
+.hp-field { position:absolute; left:-9999px; top:-9999px; height:0; width:0; overflow:hidden; }
+.captcha-row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.captcha-row .field { margin:0; }
+.captcha-row input { width:110px; }
+.captcha-q { font-size:14px; font-weight:700; }
+.form-status { font-size:13px; font-weight:700; min-height:18px; margin:4px 0 0; }
+.form-status.ok { color:light-dark(#2e7d32,#a5d66a); }
+.form-status.err { color:light-dark(#c62828,#ff9e92); }
+footer { background:#e9efdf; color:#1b2923; padding:30px 0; border-top:1px solid #dce4cd; }
+.footer-row { display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }.footer-brand { font-weight:800; }.footer-row p { margin:5px 0 0; font-size:12px; color:#5a6b5e; }.footer-links { display:flex; gap:20px; flex-wrap:wrap; }.footer-links a { color:#3c5044; text-decoration:none; font-size:12px; }
+@media (prefers-color-scheme: dark) { .card-num { color:#d6f06a; } }
+@media(max-width:850px) { .navlinks { gap:15px; }.navlinks a { font-size:13px; }.hero-grid { gap:25px; padding:58px 0 65px; }.court-art { min-height:310px; }.quick { padding:18px 14px; }.quick:first-child { padding-left:0; }.resource-grid { grid-template-columns:repeat(2,1fr); }.contact-grid { gap:35px; } }
+@media(max-width:680px) { .wrap { width:min(100% - 32px, 560px); }.topline .wrap { justify-content:center; text-align:center; }.topline .wrap span:last-child { display:none; }.nav { min-height:70px; }.menu-toggle { display:block; }.navlinks { display:none; position:absolute; left:0; right:0; top:100%; padding:18px 22px 22px; background:light-dark(#fff,#18231e); border-bottom:1px solid #dfe5da; flex-direction:column; align-items:stretch; gap:18px; }.navlinks.open { display:flex; }.navlinks .btn { text-align:center; }.hero-grid { grid-template-columns:1fr; padding:55px 0 45px; gap:20px; }.hero-copy { font-size:15px; }.court-art { min-height:280px; width:min(100%,400px); margin:0 auto; }.court { width:230px; }.art-note { left:3%; bottom:0; }.quickgrid { grid-template-columns:1fr; }.quick,.quick:first-child { padding:15px 0; border-right:0; border-bottom:1px solid light-dark(#e6e9e2,#2c3932); }.quick:last-child { border-bottom:0; }.section-head { display:block; }.section-head p { margin-top:15px; }.cards { grid-template-columns:1fr; }.card { padding:23px; }.card-num { margin-bottom:18px; }.band-grid,.contact-grid { grid-template-columns:1fr; gap:30px; }.info-panel { padding:24px; }.resource-grid { gap:10px; }.resource { min-height:150px; padding:17px; }.contact-box { padding:24px; }.form-row { grid-template-columns:1fr; } section { padding:58px 0; } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="topline"><div class="wrap"><span>🎾 &nbsp;Le plaisir du tennis, à tout âge</span><span>Tennis Club Avenches · Fondé en 1975</span></div></div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#accueil" aria-label="Accueil Tennis Club Avenches"><span class="brand-logo"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/tca-logo-ondark.png"><img src="assets/tca-logo.png" alt="Tennis Club Avenches" width="415" height="239"></picture></span></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navlinks">☰ Menu</button>
+      <nav class="navlinks" id="navlinks" aria-label="Navigation principale">
+        <a href="#club">Le club</a><a href="#membre">Devenir membre</a><a href="#cours">Les cours</a><a href="#liens">Liens utiles</a><a href="#contact">Contact</a><a href="https://tcavenches.plugin.ch" target="_blank" rel="noopener noreferrer" class="btn btn-lime">Réserver un court ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="accueil">
+      <div class="wrap hero-grid">
+        <div><span class="eyebrow">Bienvenue au club</span><h1>Le tennis se joue <em>ensemble.</em></h1><p class="hero-copy">Fondé en 1975, le Tennis Club Avenches compte près de 150 membres, adultes et juniors. Club formateur avant tout, nous accueillons toute personne souhaitant jouer pour le plaisir ou pour la compétition.</p><div class="hero-actions"><a class="btn btn-lime" href="https://tcavenches.plugin.ch" target="_blank" rel="noopener noreferrer">Réserver un court <span>↗</span></a><a class="btn btn-outline" href="#membre">Rejoindre le club</a><a class="btn btn-outline" href="#cours">Les cours ↓</a></div></div>
+        <div class="court-art" aria-label="Illustration stylisée d'un court de tennis"><div class="court"><div class="court-mid"></div><div class="net"></div></div><div class="ball"></div><div class="art-note"><strong>À vous de jouer.</strong><span>Avenches · Toutes les générations</span></div></div>
+      </div>
+    </section>
+    <div class="quickbar"><div class="wrap quickgrid"><a class="quick" href="#contact"><span class="quick-icon">📍</span><span><strong>Où nous trouver</strong><small>Ch. de la Voie ferrée 23, Avenches</small></span></a><a class="quick" href="https://tcavenches.plugin.ch" target="_blank" rel="noopener noreferrer"><span class="quick-icon">📅</span><span><strong>Réserver un court</strong><small>Réservation des terrains sur PlugIn</small></span></a><a class="quick" href="#contact"><span class="quick-icon">✉️</span><span><strong>Une question ?</strong><small>Contactez le comité</small></span></a></div></div>
+    <section id="club"><div class="wrap"><div class="section-head"><div><span class="eyebrow" style="color:var(--site-primary)">La vie du club</span><h2>Du tennis pour<br>toutes les envies.</h2></div><p>Installé à Avenches, le club est avant tout un club formateur, dédié à la promotion du tennis dans la région.</p></div><div class="cards">
+      <article class="card"><div class="card-num">01</div><h3>École de tennis</h3><p>Des cours pour tous les âges et tous les niveaux, organisés par TAB Academy, des enfants aux adultes.</p><a class="textlink" href="#cours">Découvrir les cours ↗</a></article>
+      <article class="card"><div class="card-num">02</div><h3>Loisir & compétition</h3><p>Pratique du tennis à tous les niveaux : jeu libre entre membres, cours juniors et adultes, et rencontres interclubs.</p><a class="textlink" href="#membre">Devenir membre ↗</a></article>
+      <article class="card"><div class="card-num">03</div><h3>Tournois</h3><p>Le club organise chaque année des tournois juniors ainsi que son traditionnel tournoi interne.</p><a class="textlink" href="#liens">Voir les liens utiles ↗</a></article>
+    </div></div></section>
+    <section class="club-band" id="reservation"><div class="wrap band-grid"><div><span class="eyebrow" style="color:var(--site-primary)">Réservation en ligne</span><h2>Réservez votre court en quelques clics.</h2><p>La réservation des terrains se fait en ligne sur PlugIn, la plateforme des clubs de tennis suisses. Depuis votre espace membre, consultez les disponibilités et réservez votre court à tout moment.</p><p>L'accès aux courts s'effectue ensuite simplement avec votre badge RFID. Votre espace PlugIn vous permet aussi de gérer votre inscription et vos données de membre.</p></div><div style="display:grid;place-items:center"><a class="btn btn-lime" href="https://tcavenches.plugin.ch" target="_blank" rel="noopener noreferrer">Réserver un court ↗</a></div></div></section>
+    <section id="membre"><div class="wrap"><div class="section-head"><div><span class="eyebrow" style="color:var(--site-primary)">Devenir membre</span><h2>Nous rejoindre,<br>c'est tout simple.</h2></div><p>L'inscription se fait via notre formulaire de contact. Nous nous réjouissons d'accueillir tout nouveau membre souhaitant exercer un sport pour le plaisir ou pour la compétition.</p></div><div class="band-grid" style="align-items:start"><div><table class="price-table"><thead><tr><th>Catégorie</th><th>Cotisation annuelle</th></tr></thead><tbody>
+      <tr><td>Membre actif</td><td>CHF 200.-</td></tr>
+      <tr><td>Couple</td><td>CHF 350.-</td></tr>
+      <tr><td>Étudiant, apprenti (jusqu'à 25 ans) et AVS</td><td>CHF 100.-</td></tr>
+      <tr><td>Enfant (jusqu'à 16 ans)</td><td>CHF 70.-</td></tr>
+      <tr><td>Membre passif</td><td>CHF 20.-</td></tr>
+      <tr><td>Badge d'accès RFID</td><td>CHF 30.-</td></tr>
+    </tbody></table><p style="font-size:13px;opacity:.7;line-height:1.7;margin-top:16px">Finance d'entrée au club : CHF 50.-, sauf pour la catégorie « enfant » où aucune finance d'inscription n'est perçue.</p></div><div class="info-panel"><h3>Comment s'inscrire ?</h3><p class="notice" style="margin:0 0 22px">Écrivez-nous via le formulaire de contact, nous vous indiquerons les prochaines étapes.</p><a class="btn btn-lime" href="#contact">Nous contacter ↗</a></div></div></div></section>
+    <section class="club-band" id="cours"><div class="wrap"><div class="section-head"><div><span class="eyebrow" style="color:var(--site-primary)">Les cours</span><h2>Des cours pour<br>tous les âges.</h2></div><p>Les cours sont organisés par TAB Academy. Inscriptions, tarifs et informations détaillées sur le site de l'académie.</p></div><div class="band-grid"><div><h3 style="font-size:22px;letter-spacing:-.03em;margin-bottom:14px">Une école de tennis pour tous</h3><p style="line-height:1.8;opacity:.75;max-width:480px">Des enfants aux adultes, du loisir à la compétition : l'école de tennis accueille tous les âges et tous les niveaux. Des stages et des camps sont également proposés durant les vacances scolaires.</p><p style="line-height:1.8;opacity:.75;max-width:480px">Les cours sont entièrement organisés par <strong>TAB Academy</strong>, qui gère les groupes, les horaires, les tarifs et les inscriptions.</p></div><div class="info-panel"><h3>S'inscrire aux cours</h3><div class="info-row"><span>🎓 Organisateur</span><strong>TAB Academy</strong></div><div class="info-row"><span>🌐 Inscriptions & tarifs</span><strong>www.tab-academy.ch</strong></div><div class="info-row"><span>✉️ E-mail</span><strong>admin@tab-academy.ch</strong></div><div class="info-row"><span>☎️ Téléphone</span><strong>076 429 53 45</strong></div><a class="btn btn-lime" href="https://www.tab-academy.ch/" target="_blank" rel="noopener noreferrer" style="margin-top:20px">S'inscrire sur tab-academy.ch ↗</a><p class="notice">Les cours se déroulent sur les sites d'Avenches, Domdidier et Gletterens.</p></div></div></div></section>
+    <section class="links-section" id="liens"><div class="wrap"><div class="section-head"><div><span class="eyebrow" style="color:var(--site-primary)">Raccourcis pratiques</span><h2>Les liens utiles.</h2></div><p>Les ressources que les membres consultent souvent, regroupées en quelques clics.</p></div><div class="resource-grid">
+      <a class="resource" href="https://tcavenches.plugin.ch" target="_blank" rel="noopener noreferrer"><span class="arrow">↗</span><strong>Réserver un court</strong><small>Réservation des terrains et compte membre sur PlugIn.</small></a>
+      <a class="resource" href="https://www.tab-academy.ch/" target="_blank" rel="noopener noreferrer"><span class="arrow">↗</span><strong>TAB Academy</strong><small>Inscriptions aux cours, stages et camps de tennis.</small></a>
+      <a class="resource" href="https://www.swisstennis.ch/" target="_blank" rel="noopener noreferrer"><span class="arrow">↗</span><strong>Swiss Tennis</strong><small>Actualités, classements et informations nationales.</small></a>
+      <a class="resource" href="http://www.kidstennis.ch/" target="_blank" rel="noopener noreferrer"><span class="arrow">↗</span><strong>Kids Tennis</strong><small>La méthode d'apprentissage pour les 5 à 12 ans.</small></a>
+      <a class="resource" href="https://www.facebook.com/TcAvenches/" target="_blank" rel="noopener noreferrer"><span class="arrow">↗</span><strong>Facebook</strong><small>Suivez la vie du club sur Facebook.</small></a>
+      <a class="resource" href="https://www.instagram.com/tcavenches/" target="_blank" rel="noopener noreferrer"><span class="arrow">↗</span><strong>Instagram</strong><small>Les images du club sur Instagram.</small></a>
+      <a class="resource" href="https://www.mytennis.ch/" target="_blank" rel="noopener noreferrer"><span class="arrow">↗</span><strong>myTennis</strong><small>Informations et services pour les joueuses et joueurs.</small></a>
+      <a class="resource" href="#contact"><span class="arrow">↗</span><strong>Nous contacter</strong><small>Une question ? Écrivez au comité.</small></a>
+    </div></div></section>
+    <section class="contact" id="contact"><div class="wrap contact-grid"><div><span class="eyebrow" style="color:var(--site-primary)">Restons en contact</span><h2>On se retrouve sur le court ?</h2><p class="contact-intro">Une question sur les cotisations, les cours ou les installations ? Écrivez-nous, nous vous répondrons avec plaisir.</p><div class="contact-list"><div class="contact-item"><span class="quick-icon">📍</span><div><strong>Adresse du club</strong><p>Tennis Club Avenches<br>Ch. de la Voie ferrée 23<br>CH-1580 Avenches</p></div></div><div class="contact-item"><span class="quick-icon">✉️</span><div><strong>E-mail</strong><p><a href="mailto:info@tc-avenches.ch">info@tc-avenches.ch</a></p></div></div><div class="contact-item"><span class="quick-icon">👥</span><div><strong>Comité</strong><p>David Ackermann (président, +41 79 775 40 80) · Cédric Ringli (vice-président) · Daniela Ackermann (secrétaire) · Marco Sarcina (compétitions) · Joachim Baehler (logistique) · Joël Arnold (caissier)</p></div></div></div></div><div class="contact-box"><h3>Écrivez-nous</h3><p>Remplissez ce formulaire, il ouvrira votre logiciel de messagerie avec votre message prêt à envoyer.</p>
+      <!--
+        Pour un envoi direct sans logiciel de messagerie, remplacez le gestionnaire JS
+        par une action de formulaire, par exemple :
+        <form action="https://formsubmit.co/info@tc-avenches.ch" method="POST">
+        FormSubmit propose un captcha intégré (champ caché _captcha=true).
+      -->
+      <form id="contactForm" class="form-grid" novalidate>
+        <div class="form-row">
+          <div class="field"><label for="cf-name">Votre nom *</label><input id="cf-name" name="nom" type="text" required autocomplete="name"></div>
+          <div class="field"><label for="cf-email">Votre e-mail *</label><input id="cf-email" name="email" type="email" required autocomplete="email"></div>
+        </div>
+        <div class="field"><label for="cf-subject">Objet</label><input id="cf-subject" name="objet" type="text"></div>
+        <div class="field"><label for="cf-message">Votre message *</label><textarea id="cf-message" name="message" required></textarea></div>
+        <div class="hp-field" aria-hidden="true"><label>Ne pas remplir<input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <div class="captcha-row"><div class="field"><label for="cf-captcha">Anti-robot *</label><input id="cf-captcha" name="captcha" type="text" inputmode="numeric" required autocomplete="off"></div><p class="captcha-q" id="captchaQuestion"></p></div>
+        <p class="form-status" id="formStatus" role="status"></p>
+        <div><button class="btn btn-primary" type="submit">Envoyer le message ↗</button></div>
+      </form>
+    </div></div></section>
+  </main>
+  <footer><div class="wrap footer-row"><div><div class="footer-brand"><span class="brand-logo"><img src="assets/tca-logo.png" alt="Tennis Club Avenches" width="415" height="239"></span></div><p>Ch. de la Voie ferrée 23 · CH-1580 Avenches · Fondé en 1975</p></div><div class="footer-links"><a href="#club">Le club</a><a href="#membre">Devenir membre</a><a href="#cours">Les cours</a><a href="#liens">Liens utiles</a><a href="#contact">Contact</a></div><p>© <span id="year"></span> Tennis Club Avenches</p></div></footer>
+</div>
+<script>
+const toggle = document.getElementById('menuToggle');
+const nav = document.getElementById('navlinks');
+toggle.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', String(open));
+  toggle.textContent = open ? '✕ Fermer' : '☰ Menu';
+});
+nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  nav.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.textContent = '☰ Menu';
+}));
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Captcha arithmétique simple + champ piège (honeypot) pour filtrer les bots.
+const CONTACT_EMAIL = 'info@tc-avenches.ch';
+const form = document.getElementById('contactForm');
+const status = document.getElementById('formStatus');
+const captchaInput = document.getElementById('cf-captcha');
+const captchaQuestion = document.getElementById('captchaQuestion');
+let captchaAnswer = 0;
+function newCaptcha() {
+  const a = 1 + Math.floor(Math.random() * 9);
+  const b = 1 + Math.floor(Math.random() * 9);
+  captchaAnswer = a + b;
+  captchaQuestion.textContent = `Combien font ${a} + ${b} ?`;
+  captchaInput.value = '';
+}
+newCaptcha();
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  status.className = 'form-status';
+  if (document.getElementById('cf-website').value !== '') { status.textContent = ''; return; } // bot détecté
+  const name = document.getElementById('cf-name').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+  if (!name || !email || !message) { status.textContent = 'Merci de remplir tous les champs obligatoires.'; status.classList.add('err'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { status.textContent = 'Adresse e-mail invalide.'; status.classList.add('err'); return; }
+  if (parseInt(captchaInput.value, 10) !== captchaAnswer) { status.textContent = 'Réponse au captcha incorrecte.'; status.classList.add('err'); newCaptcha(); return; }
+  const body = `Nom : ${name}\nE-mail : ${email}\n\n${message}`;
+  const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject || 'Message depuis tc-avenches.ch')}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+  status.textContent = 'Votre logiciel de messagerie va s\'ouvrir avec le message prêt à envoyer.';
+  status.classList.add('ok');
+  form.reset();
+  newCaptcha();
+});
+</script>
+</body>
+</html>
